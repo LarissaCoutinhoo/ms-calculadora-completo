@@ -5,12 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculadora com Microserviços</title>
   <style>
-    body { font-family: Arial; background: #f5f5f5; display: flex; justify-content: center; padding: 30px; }
-    .container { background: white; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h2 { text-align: center; }
-    input, select, button { width: 100%; margin: 8px 0; padding: 10px; }
-    #resultado { margin-top: 15px; font-weight: bold; text-align: center; }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  input,
+  select,
+  button {
+    width: 90%;
+    max-width: 260px;
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #e0e0e0;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #d5d5d5;
+  }
+
+  #resultado {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
