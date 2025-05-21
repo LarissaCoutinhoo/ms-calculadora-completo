@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora com Microserviços</title>
+  <style>
+    body { font-family: Arial; background: #f5f5f5; display: flex; justify-content: center; padding: 30px; }
+    .container { background: white; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; }
+    input, select, button { width: 100%; margin: 8px 0; padding: 10px; }
+    #resultado { margin-top: 15px; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora com Microserviços</h2>
+    <input type="number" id="a" placeholder="Número A" />
+    <input type="number" id="b" placeholder="Número B" />
+    <select id="operacao">
+      <option value="soma">Soma</option>
+      <option value="subtracao">Subtração</option>
+      <option value="multiplicacao">Multiplicação</option>
+      <option value="divisao">Divisão</option>
+    </select>
+    <button onclick="calcular()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+  <script>
+    async function calcular() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const operacao = document.getElementById('operacao').value;
+      const resposta = document.getElementById('resultado');
+
+      try {
+        const r = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ a, b, operacao })
+        });
+        const dados = await r.json();
+        resposta.innerText = dados.resultado !== undefined ? `Resultado: ${dados.resultado}` : dados.erro;
+      } catch (e) {
+        resposta.innerText = 'Erro ao se conectar com o servidor.';
+      }
+    }
+  </script>
+</body>
+</html>
